@@ -1,6 +1,6 @@
 private double fractionLength = .8; 
 private int smallestBranch = 10; 
-private double branchAngle = Math.random()*0.4+0.1;  
+private double branchAngle =0.3;// Math.random()*0.4+0.1;  
 public void setup() 
 {   
 	size(640,480);    
@@ -11,8 +11,9 @@ public void draw()
 {   
 	background(200,200,225);   
 	stroke(102,102,0);   
+	strokeWeight(5);
 	line(320,480,320,380);   
-	drawBranches(320,380,100,3*Math.PI/2+((Math.random()*Math.PI/3)-Math.PI/6));   
+	drawBranches(320,380,100,3*Math.PI/2/*+((Math.random()*Math.PI/3)-Math.PI/6)*/);   
 
  
 } 
@@ -26,12 +27,13 @@ public void drawBranches(int x,int y, double branchLength, double angle)
 	 int endY1 = (int)(branchLength*Math.sin(angle1) + y);
 	 int endX2 = (int)(branchLength*Math.cos(angle2) + x);
 	 int endY2 = (int)(branchLength*Math.sin(angle2) + y);
-
+	 strokeWeight(5);
 	line(x, y, endX1, endY1);
 	line(x, y, endX2, endY2);
 
 	if(branchLength>smallestBranch)
 	{ stroke(0,0,225);
+		strokeWeight(2);
 		drawBranches(endX1, endY1, branchLength, angle1); 
 		drawBranches(endX2, endY2, branchLength, angle2); 
 
@@ -39,7 +41,7 @@ public void drawBranches(int x,int y, double branchLength, double angle)
 	else{
 		
 		fill(225,0,0);
-		ellipse(endX1, endY1,1,1);
-		ellipse(endX2,endY2, 1,1);  
+		ellipse(endX1, endY1,8,8);
+		ellipse(endX2,endY2, 8,8);  
 	}
 } 
